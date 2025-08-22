@@ -123,8 +123,7 @@ vscode打开项目，打开java_upload的App.java文件，点击run就可以启�
 
 效果：
 
-<img src="https://youke1.picui.cn/s1/2025/08/22/68a830e5ba2ae.png
-" width=500px>
+<img src="https://youke1.picui.cn/s1/2025/08/22/68a830e5ba2ae.png" width=500px>
 
 <img src="https://youke1.picui.cn/s1/2025/08/22/68a830e62fdde.png" width=500px>
 
