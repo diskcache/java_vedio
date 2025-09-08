@@ -1,0 +1,38 @@
+server:
+  port: 8000
+
+spring:
+  datasource: #下面的ip地填运行redis\mysql服务的地址
+    url: jdbc:mysql://172.22.132.90:3306/vedio_mysql?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  redis:
+    host: 172.22.132.90
+    port: 6379
+    password: 123456
+
+# MyBatis-Plus 配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+
+upload: #文件保存路径
+  directory: /uploads/
+
+rocketmq:
+  name-server: 172.22.132.90:9876
+  producer:
+    group: upload
+    send-message-timeout: 3000 # 消息发送超时时长，默认3s
+    retry-times-when-send-failed: 3 # 同步发送消息失败重试次数，默认2
+    retry-times-when-send-async-failed: 3 # 异步发送消息失败重试次数，默认2
+
+#// mvn archetype:generate -DgroupId="com.example" -DartifactId=java_process -DinteractiveMode=false

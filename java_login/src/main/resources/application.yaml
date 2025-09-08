@@ -1,0 +1,9 @@
+server:
+  port: 8002
+
+spring:
+  datasource: #下面的ip地填运行redis\mysql服务的地址
+    url: jdbc:mysql://172.22.132.90:3306/vedio_mysql?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver

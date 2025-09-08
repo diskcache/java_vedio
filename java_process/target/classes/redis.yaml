@@ -1,0 +1,18 @@
+version: "2.1"
+services:
+  vedio_redis:
+    container_name: vedio_redis
+    image: redis:latest
+    volumes:
+      - /root/docker/redis/data:/data  # 数据持久化
+      - /root/docker/redis/conf/redis.conf:/etc/redis/redis.conf
+    ports:
+      - "6379:6379"
+    restart: always
+    networks:
+      - default
+    command: ["redis-server","/etc/redis/redis.conf"]
+      
+networks:
+  default:
+    driver: bridge

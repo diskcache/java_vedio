@@ -1,0 +1,27 @@
+version: "2.1"
+services:
+  vedio_mysql:
+    container_name: vedio_mysql
+    image: mysql:8.0.43
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      TZ: Asia/Shanghai
+      MYSQL_DATABASE: vedio_mysql  # 自动创建数据库
+      MYSQL_CHARSET: utf8mb4
+    volumes:
+      - /root/docker/mysql_data/vedio_mysql:/var/lib/mysql  # 数据持久化
+      - /etc/localtime:/etc/localtime
+      - /root/docker/init.sql:/docker-entrypoint-initdb.d/init.sql  # 挂载初始化脚本
+    ports:
+      - "3306:3306"
+    networks:
+      - default
+    healthcheck: # 健康检查
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      
+networks:
+  default:
+    driver: bridge

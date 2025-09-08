@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+      - id: user
+        uri: http://localhost:8002
+        predicates:
+          - Path=/gateway/user/**
+        filters:
+          - StripPrefix=1
+      - id: all
+        uri: http://localhost:8000
+        predicates:
+          - Path=/gateway/vedios/all
+        filters:
+          - StripPrefix=1  
+      - id: upload
+        uri: http://localhost:8000
+        predicates:
+          - Path=/gateway/vedios/upload
+        filters:
+          - name: JwtFilter
+            args: {}
+          - StripPrefix=1
+              

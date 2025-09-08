@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/vue.js"></script>
+    <script src="scripts/element.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/top.css">
+    <script src="scripts/axios.js"></script>
+    <script src="scripts/hls.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="top">
+            <div class="top-left">
+                <div class="dropdown">
+                    推荐
+                    <div class="dropdown-content">
+                        <p v-for="h in hots" :key="h.hot" class="h-item" @click="hot_play(h.filename)">{{h.filename}}
+                        </p>
+                    </div>
+                </div>
+                <div @click="getByUser">我的</div>
+            </div>
+            <div class="top-right">
+                <div class="search">
+                    <el-input class="search-input" style="width: 200px;" size="mini" v-model="key"></el-input>
+                    <el-button class="search-button" type="primary" size="mini" @click="search">搜索</el-button>
+                </div>
+                <div class="user" @click="showLogin">
+                    <ul class="userlist">
+                        <li class="avatar">
+                            <img
+                                src="https://c-ssl.dtstatic.com/uploads/blog/202307/10/XxS5ql7AcQd7q59.thumb.400_0.jpg_webp">
+                        </li>
+                        <li class="username">{{username}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="dialog" v-if="isloging">
+            <div class="close-btn" @click="close">
+                <i class="el-icon-close"></i>
+            </div>
+            <div class="avatar">
+                <img src="https://c-ssl.dtstatic.com/uploads/blog/202307/10/XxS5ql7AcQd7q59.thumb.400_0.jpg_webp">
+            </div>
+            <form class="login-form">
+                <div class="username">
+                    <p>用户名</p>
+                    <el-input style="width: 150px;" size="mini" v-model="loginform.username"></el-input>
+                </div>
+                <div class="password">
+                    <p>密码</p>
+                    <el-input style="width: 150px;" size="mini" type="password"
+                        v-model="loginform.password">密码</el-input>
+                </div>
+                <div class="buttons">
+                    <el-button size="mini" type="primary" @click="login">登录</el-button>
+                    <el-button size="mini" @click="register">注册</el-button>
+                </div>
+            </form>
+        </div>
+        <div class="mid">
+            <div class="video-list">
+                <div v-for="video in videos" :key="video.id" class="video-item" @click="play(video.fileName)">
+                    <div class="thumb-container">
+                        <img :src="video.imgPath" alt="缩略图" class="shot">
+                    </div>
+                    <div class="title">{{ video.fileName }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom" @click="upload">
+            <i class="el-icon-upload" style="color: #F5A3EE;"></i>
+        </div>
+    </div>
+</body>
+<style>
+    .bottom {
+        width: 100%;
+    }
+
+    .bottom i {
+        float: right;
+        font-size: 64px;
+    }
+</style>
+<script>
+    // JWT解析函数
+    function encode(token) {
+        try {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
+                '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+            ).join(''));
+
+            return JSON.parse(jsonPayload);
+        } catch (e) {
+            return null;
+        }
+    }
+
+    axios.interceptors.request.use(config => {
+        const token = localStorage.getItem('token');
+        if (token)
+            config.headers.Authorization = `Bearer ${token}`;
+        return config;
+    }, error => {
+        return Promise.reject(error);
+    });
+
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                username: '',
+                userId: '',
+                videos: [],
+                loginform: {
+                    username: '',
+                    password: '',
+                },
+                key: '',
+                isloging: false,
+                hots: [],
+            }
+        },
+        created() {
+            this.getAll();
+            this.checkLogin();
+            this.gethot();
+        },
+        methods: {
+            showLogin() {
+                if (this.checkLogin()) {
+                    this.isloging = false;
+                    this.$message.success("已登录")
+                }
+                else
+                    this.isloging = true
+            },
+            close() { this.isloging = false },
+            // 检查登录状态
+            checkLogin() {
+                const token = localStorage.getItem('token');
+                if (token) {
+                    const payload = encode(token);
+                    this.userId = payload.userid;// 注意payload中的字段名是小写userid
+                    this.username = payload.username;
+                    return true;
+                } else
+                    return false;
+            },
+            login() {
+                const form = new FormData;
+                form.append("username", this.loginform.username)
+                form.append("password", this.loginform.password)
+                axios.post('http://127.0.0.1:8080/gateway/user/login', form).then((res) => {
+                    if (res.data.token) {
+                        localStorage.setItem('token', res.data.token);
+                        this.username = res.data.username;
+                        this.userId = res.data.userId;
+                        this.$message.success(res.data.message)
+                        this.isloging = false
+                    } else
+                        this.$message.error("error")
+                })
+            },
+            register() {
+                const form = new FormData;
+                form.append("username", this.loginform.username)
+                form.append("password", this.loginform.password)
+                axios.post('http://127.0.0.1:8080/gateway/user/register', form).then((res) => {
+                    this.$message.success(res.data.message)
+                })
+            },
+            getAll() {
+                axios.get('http://127.0.0.1:8000/vedios/all').then((res) => {
+                    this.videos = res.data
+                })
+            },
+            search() {
+                const form = new FormData;
+                form.append("key", this.key);
+                axios.post('http://127.0.0.1:8000/vedios/search', form).then((res) => {
+                    this.videos = res.data
+                })
+            },
+            play(filename) {
+                window.location.href = `play.html?video=${encodeURIComponent(filename)}`
+            },
+            upload() {
+                window.location.href = `upload.html`
+            },
+            getByUser() {
+                if (!this.checkLogin()) {
+                    this.$message.error("请先登录");
+                    return
+                }
+                const form = new FormData
+                form.append("userId", this.userId)
+                axios.post('http://127.0.0.1:8000/vedios/user', form).then((res) => {
+                    this.videos = res.data
+                })
+            },
+            gethot() {
+                axios.get('http://127.0.0.1:8000/vedios/hot').then((res) => {
+                    this.hots = res.data
+                })
+            },
+            hot_play(filename) {
+                window.location.href = `play.html?video=${encodeURIComponent(filename)}`
+            }
+
+        }
+    })
+</script>
+<html>

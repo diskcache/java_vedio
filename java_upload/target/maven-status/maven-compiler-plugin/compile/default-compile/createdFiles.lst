@@ -1,0 +1,6 @@
+com\example\model\Vedio.class
+com\example\service\VedioService.class
+com\example\App.class
+com\example\service\impl\VedioServiceImpl.class
+com\example\dao\VedioMapper.class
+com\example\controller\VedioController.class

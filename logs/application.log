@@ -1,0 +1,217 @@
+2025-09-08 11:49:00 [main] INFO  com.example.App - Starting App using Java 17.0.12 on LAPTOP-00MAUT3I with PID 11144 (C:\Users\23313\Desktop\java\java_vedio\java_login\target\classes started by 23313 in C:\Users\23313\Desktop\java\java_vedio)
+2025-09-08 11:49:00 [main] INFO  com.example.App - No active profile set, falling back to 1 default profile: "default"
+2025-09-08 11:49:02 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-09-08 11:49:02 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-09-08 11:49:02 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-08 11:49:02 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2025-09-08 11:49:02 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-09-08 11:49:02 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1689 ms
+2025-09-08 11:49:02 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userController': Unsatisfied dependency expressed through field 'userService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userMapper' defined in file [C:\Users\23313\Desktop\java\java_vedio\java_login\target\classes\com\example\dao\UserMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Unsatisfied dependency expressed through method 'sqlSessionFactory' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception; nested exception is org.springframework.boot.autoconfigure.jdbc.DataSourceProperties$DataSourceBeanCreationException: Failed to determine a suitable driver class
+2025-09-08 11:49:02 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2025-09-08 11:49:02 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2025-09-08 11:49:02 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+2025-09-08 11:49:53 [main] INFO  com.example.App - Starting App using Java 17.0.12 on LAPTOP-00MAUT3I with PID 35908 (C:\Users\23313\Desktop\java\java_vedio\java_login\target\classes started by 23313 in c:\Users\23313\Desktop\java\java_vedio)
+2025-09-08 11:49:53 [main] INFO  com.example.App - No active profile set, falling back to 1 default profile: "default"
+2025-09-08 11:49:54 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-09-08 11:49:54 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-09-08 11:49:54 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-08 11:49:54 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2025-09-08 11:49:54 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-09-08 11:49:54 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1428 ms
+2025-09-08 11:49:54 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userController': Unsatisfied dependency expressed through field 'userService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userServiceImpl': Unsatisfied dependency expressed through field 'baseMapper'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userMapper' defined in file [C:\Users\23313\Desktop\java\java_vedio\java_login\target\classes\com\example\dao\UserMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Unsatisfied dependency expressed through method 'sqlSessionFactory' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception; nested exception is org.springframework.boot.autoconfigure.jdbc.DataSourceProperties$DataSourceBeanCreationException: Failed to determine a suitable driver class
+2025-09-08 11:49:54 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2025-09-08 11:49:54 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2025-09-08 11:49:54 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+2025-09-08 11:51:34 [main] INFO  com.example.App - Starting App using Java 17.0.12 on LAPTOP-00MAUT3I with PID 30448 (C:\Users\23313\Desktop\java\java_vedio\java_login\target\classes started by 23313 in c:\Users\23313\Desktop\java\java_vedio)
+2025-09-08 11:51:34 [main] INFO  com.example.App - No active profile set, falling back to 1 default profile: "default"
+2025-09-08 11:51:36 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8002 (http)
+2025-09-08 11:51:36 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8002"]
+2025-09-08 11:51:36 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-08 11:51:36 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2025-09-08 11:51:36 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-09-08 11:51:36 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1836 ms
+2025-09-08 11:51:36 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-09-08 11:51:36 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-09-08 11:51:37 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8002"]
+2025-09-08 11:51:37 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8002 (http) with context path ''
+2025-09-08 11:51:37 [main] INFO  com.example.App - Started App in 4.18 seconds (JVM running for 4.694)
+2025-09-08 11:52:28 [main] INFO  com.example.App - Starting App using Java 17.0.12 on LAPTOP-00MAUT3I with PID 35828 (C:\Users\23313\Desktop\java\java_vedio\java_login\target\classes started by 23313 in c:\Users\23313\Desktop\java\java_vedio)
+2025-09-08 11:52:28 [main] INFO  com.example.App - No active profile set, falling back to 1 default profile: "default"
+2025-09-08 11:52:30 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8002 (http)
+2025-09-08 11:52:30 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8002"]
+2025-09-08 11:52:30 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-08 11:52:30 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2025-09-08 11:52:30 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-09-08 11:52:30 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1573 ms
+2025-09-08 11:52:30 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-09-08 11:52:30 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-09-08 11:52:31 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8002"]
+2025-09-08 11:52:31 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8002 (http) with context path ''
+2025-09-08 11:52:31 [main] INFO  com.example.App - Started App in 3.389 seconds (JVM running for 3.717)
+2025-09-08 11:53:04 [http-nio-8002-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-08 11:53:04 [http-nio-8002-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-09-08 11:53:04 [http-nio-8002-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-09-08 11:53:04 [http-nio-8002-exec-1] INFO  com.example.service.LoggingAspect - Entering: UserController.login()
+2025-09-08 11:53:04 [http-nio-8002-exec-1] INFO  com.example.service.LoggingAspect - Entering: UserServiceImpl.authenticate()
+2025-09-08 11:53:04 [http-nio-8002-exec-1] INFO  com.example.service.LoggingAspect - Exiting: UserServiceImpl.authenticate() | Time: 200 ms
+2025-09-08 11:53:04 [http-nio-8002-exec-1] INFO  c.example.controller.UserController - User admin logged in successfully
+2025-09-08 11:53:04 [http-nio-8002-exec-1] INFO  com.example.service.LoggingAspect - Exiting: UserController.login() | Time: 294 ms
+2025-09-08 12:01:53 [main] INFO  com.example.App - Starting App using Java 17.0.12 on LAPTOP-00MAUT3I with PID 11688 (C:\Users\23313\Desktop\java\java_vedio\java_upload\target\classes started by 23313 in c:\Users\23313\Desktop\java\java_vedio)
+2025-09-08 12:01:53 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2025-09-08 12:01:53 [main] INFO  com.example.App - No active profile set, falling back to 1 default profile: "default"
+2025-09-08 12:01:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-08 12:01:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-08 12:01:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2025-09-08 12:01:55 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8000 (http)
+2025-09-08 12:01:55 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8000"]
+2025-09-08 12:01:55 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-08 12:01:55 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2025-09-08 12:01:55 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-09-08 12:01:55 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2068 ms
+2025-09-08 12:01:55 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-09-08 12:01:56 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-09-08 12:01:58 [main] INFO  o.a.r.s.s.DefaultRocketMQListenerContainer - running container: DefaultRocketMQListenerContainer{consumerGroup='Upload_Group_One', nameServer='172.22.132.90:9876', topic='RLT_PROCESS_TOPIC', consumeMode=CONCURRENTLY, selectorType=TAG, selectorExpression='finish', messageModel=CLUSTERING}
+2025-09-08 12:01:58 [main] INFO  o.a.r.s.a.ListenerContainerConfiguration - Register the listener to container, listenerBeanName:com.example.service.impl.ConsumerServiceImpl$ConsumerSend, containerBeanName:org.apache.rocketmq.spring.support.DefaultRocketMQListenerContainer_1
+2025-09-08 12:01:58 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8000"]
+2025-09-08 12:01:58 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8000 (http) with context path ''
+2025-09-08 12:01:58 [main] INFO  com.example.App - Started App in 5.706 seconds (JVM running for 6.115)
+2025-09-08 12:02:15 [main] INFO  com.example.App - Starting App using Java 17.0.12 on LAPTOP-00MAUT3I with PID 11144 (C:\Users\23313\Desktop\java\java_vedio\java_login\target\classes started by 23313 in C:\Users\23313\Desktop\java\java_vedio)
+2025-09-08 12:02:15 [main] INFO  com.example.App - No active profile set, falling back to 1 default profile: "default"
+2025-09-08 12:02:17 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8002 (http)
+2025-09-08 12:02:17 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8002"]
+2025-09-08 12:02:17 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-08 12:02:17 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2025-09-08 12:02:17 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-09-08 12:02:17 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1646 ms
+2025-09-08 12:02:17 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-09-08 12:02:17 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-09-08 12:02:18 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8002"]
+2025-09-08 12:02:18 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8002 (http) with context path ''
+2025-09-08 12:02:18 [main] INFO  com.example.App - Started App in 3.592 seconds (JVM running for 3.922)
+2025-09-08 12:03:21 [http-nio-8000-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-08 12:03:21 [http-nio-8000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-09-08 12:03:21 [http-nio-8000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2025-09-08 12:03:21 [http-nio-8000-exec-1] INFO  com.example.service.LoggingAspect - Entering: VedioController.getAll()
+2025-09-08 12:03:21 [http-nio-8000-exec-2] INFO  com.example.service.LoggingAspect - Entering: VedioController.getHotRank()
+2025-09-08 12:03:21 [http-nio-8000-exec-2] INFO  com.example.service.LoggingAspect - Exiting: VedioController.getHotRank() | Time: 56 ms
+2025-09-08 12:03:21 [http-nio-8000-exec-1] INFO  com.example.service.LoggingAspect - Exiting: VedioController.getAll() | Time: 115 ms
+2025-09-08 12:04:46 [http-nio-8000-exec-5] INFO  com.example.service.LoggingAspect - Entering: VedioController.getAll()
+2025-09-08 12:04:46 [http-nio-8000-exec-6] INFO  com.example.service.LoggingAspect - Entering: VedioController.getHotRank()
+2025-09-08 12:04:46 [http-nio-8000-exec-6] INFO  com.example.service.LoggingAspect - Exiting: VedioController.getHotRank() | Time: 1 ms
+2025-09-08 12:04:46 [http-nio-8000-exec-5] INFO  com.example.service.LoggingAspect - Exiting: VedioController.getAll() | Time: 4 ms
+2025-09-08 12:04:59 [http-nio-8002-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-08 12:04:59 [http-nio-8002-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-09-08 12:04:59 [http-nio-8002-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-09-08 12:04:59 [http-nio-8002-exec-1] INFO  com.example.service.LoggingAspect - Entering: UserController.register()
+2025-09-08 12:04:59 [http-nio-8002-exec-1] INFO  c.example.controller.UserController - Register attempt for user: test
+2025-09-08 12:04:59 [http-nio-8002-exec-1] WARN  c.example.controller.UserController - Register failed for user: test err: nested exception is org.apache.ibatis.reflection.ReflectionException: Could not set property 'id' of 'class com.example.model.User' with value '1964902764383694849' Cause: java.lang.IllegalArgumentException: argument type mismatch
+2025-09-08 12:04:59 [http-nio-8002-exec-1] INFO  com.example.service.LoggingAspect - Exiting: UserController.register() | Time: 90 ms
+2025-09-08 12:06:45 [main] INFO  com.example.App - Starting App using Java 17.0.12 on LAPTOP-00MAUT3I with PID 39164 (C:\Users\23313\Desktop\java\java_vedio\java_login\target\classes started by 23313 in c:\Users\23313\Desktop\java\java_vedio)
+2025-09-08 12:06:45 [main] INFO  com.example.App - No active profile set, falling back to 1 default profile: "default"
+2025-09-08 12:06:47 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8002 (http)
+2025-09-08 12:06:47 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8002"]
+2025-09-08 12:06:47 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-08 12:06:47 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2025-09-08 12:06:47 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-09-08 12:06:47 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1741 ms
+2025-09-08 12:06:47 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-09-08 12:06:48 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-09-08 12:06:49 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8002"]
+2025-09-08 12:06:49 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8002 (http) with context path ''
+2025-09-08 12:06:49 [main] INFO  com.example.App - Started App in 3.859 seconds (JVM running for 4.178)
+2025-09-08 12:11:00 [main] INFO  com.example.App - Starting App using Java 17.0.12 on LAPTOP-00MAUT3I with PID 25124 (C:\Users\23313\Desktop\java\java_vedio\java_login\target\classes started by 23313 in c:\Users\23313\Desktop\java\java_vedio)
+2025-09-08 12:11:00 [main] INFO  com.example.App - No active profile set, falling back to 1 default profile: "default"
+2025-09-08 12:11:01 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8002 (http)
+2025-09-08 12:11:01 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8002"]
+2025-09-08 12:11:01 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-08 12:11:01 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2025-09-08 12:11:01 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-09-08 12:11:01 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1597 ms
+2025-09-08 12:11:02 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-09-08 12:11:02 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-09-08 12:11:03 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8002"]
+2025-09-08 12:11:03 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8002 (http) with context path ''
+2025-09-08 12:11:03 [main] INFO  com.example.App - Started App in 3.622 seconds (JVM running for 3.953)
+2025-09-08 12:11:11 [http-nio-8002-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-08 12:11:11 [http-nio-8002-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-09-08 12:11:11 [http-nio-8002-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-09-08 12:11:11 [http-nio-8002-exec-1] INFO  com.example.service.LoggingAspect - Entering: UserController.register()
+2025-09-08 12:11:11 [http-nio-8002-exec-1] INFO  c.example.controller.UserController - Register attempt for user: test
+2025-09-08 12:11:11 [http-nio-8002-exec-1] INFO  c.example.controller.UserController - Register success for user: test
+2025-09-08 12:11:11 [http-nio-8002-exec-1] INFO  com.example.service.LoggingAspect - Exiting: UserController.register() | Time: 112 ms
+2025-09-08 12:11:15 [http-nio-8002-exec-2] INFO  com.example.service.LoggingAspect - Entering: UserController.login()
+2025-09-08 12:11:15 [http-nio-8002-exec-2] INFO  c.example.controller.UserController - Login attempt for user: test
+2025-09-08 12:11:15 [http-nio-8002-exec-2] INFO  com.example.service.LoggingAspect - Entering: UserServiceImpl.authenticate()
+2025-09-08 12:11:15 [http-nio-8002-exec-2] INFO  com.example.service.LoggingAspect - Exiting: UserServiceImpl.authenticate() | Time: 81 ms
+2025-09-08 12:11:15 [http-nio-8002-exec-2] WARN  c.example.controller.UserController - Failed login for user: test
+2025-09-08 12:11:15 [http-nio-8002-exec-2] INFO  com.example.service.LoggingAspect - Exiting: UserController.login() | Time: 82 ms
+2025-09-08 12:14:47 [main] INFO  com.example.App - Starting App using Java 17.0.12 on LAPTOP-00MAUT3I with PID 8104 (C:\Users\23313\Desktop\java\java_vedio\java_login\target\classes started by 23313 in c:\Users\23313\Desktop\java\java_vedio)
+2025-09-08 12:14:47 [main] INFO  com.example.App - No active profile set, falling back to 1 default profile: "default"
+2025-09-08 12:14:48 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8002 (http)
+2025-09-08 12:14:48 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8002"]
+2025-09-08 12:14:48 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-08 12:14:48 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2025-09-08 12:14:49 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-09-08 12:14:49 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1680 ms
+2025-09-08 12:14:49 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-09-08 12:14:49 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-09-08 12:14:50 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8002"]
+2025-09-08 12:14:50 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8002 (http) with context path ''
+2025-09-08 12:14:50 [main] INFO  com.example.App - Started App in 3.931 seconds (JVM running for 4.261)
+2025-09-08 12:14:53 [http-nio-8002-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-08 12:14:53 [http-nio-8002-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-09-08 12:14:53 [http-nio-8002-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-09-08 12:14:53 [http-nio-8002-exec-1] INFO  com.example.service.LoggingAspect - Entering: UserController.login()
+2025-09-08 12:14:53 [http-nio-8002-exec-1] INFO  c.example.controller.UserController - Login attempt for user: test
+2025-09-08 12:14:53 [http-nio-8002-exec-1] INFO  com.example.service.LoggingAspect - Entering: UserServiceImpl.authenticate()
+2025-09-08 12:14:53 [http-nio-8002-exec-1] INFO  com.example.service.LoggingAspect - Exiting: UserServiceImpl.authenticate() | Time: 119 ms
+2025-09-08 12:14:53 [http-nio-8002-exec-1] INFO  c.example.controller.UserController - User test logged in successfully
+2025-09-08 12:14:53 [http-nio-8002-exec-1] INFO  com.example.service.LoggingAspect - Exiting: UserController.login() | Time: 187 ms
+2025-09-08 12:15:00 [http-nio-8000-exec-10] INFO  com.example.service.LoggingAspect - Entering: VedioController.getByUser()
+2025-09-08 12:15:00 [http-nio-8000-exec-10] INFO  com.example.service.LoggingAspect - Entering: VedioServiceImpl.queryByUser()
+2025-09-08 12:15:00 [http-nio-8000-exec-10] INFO  com.example.service.LoggingAspect - Exiting: VedioServiceImpl.queryByUser() | Time: 87 ms
+2025-09-08 12:15:00 [http-nio-8000-exec-10] INFO  com.example.service.LoggingAspect - Exiting: VedioController.getByUser() | Time: 87 ms
+2025-09-08 12:15:04 [http-nio-8000-exec-3] INFO  com.example.service.LoggingAspect - Entering: VedioController.getAll()
+2025-09-08 12:15:04 [http-nio-8000-exec-4] INFO  com.example.service.LoggingAspect - Entering: VedioController.getHotRank()
+2025-09-08 12:15:04 [http-nio-8000-exec-4] INFO  com.example.service.LoggingAspect - Exiting: VedioController.getHotRank() | Time: 2 ms
+2025-09-08 12:15:04 [http-nio-8000-exec-3] INFO  com.example.service.LoggingAspect - Exiting: VedioController.getAll() | Time: 4 ms

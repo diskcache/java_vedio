@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/vue.js"></script>
+    <script src="scripts/element.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/top.css">
+    <script src="scripts/axios.js"></script>
+    <script src="scripts/hls.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="top">
+            <div class="top-left">
+                <div class="dropdown">
+                    推荐
+                    <div class="dropdown-content">
+                        <p v-for="h in hots" :key="h.hot" class="h-item" @click="hot_play(h.filename)">{{h.filename}}
+                        </p>
+                    </div>
+                </div>
+                <div @click="getByUser">我的</div>
+            </div>
+            <div class="top-right">
+                <div class="search">
+                    <el-input class="search-input" style="width: 200px;" size="mini" v-model="key"></el-input>
+                    <el-button class="search-button" type="primary" size="mini" @click="search">搜索</el-button>
+                </div>
+                <div class="user" @click="showLogin">
+                    <ul class="userlist">
+                        <li class="avatar">
+                            <img
+                                src="https://c-ssl.dtstatic.com/uploads/blog/202307/10/XxS5ql7AcQd7q59.thumb.400_0.jpg_webp">
+                        </li>
+                        <li class="username">{{username}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="dialog" v-if="isloging">
+            <div class="close-btn" @click="close">
+                <i class="el-icon-close"></i>
+            </div>
+            <div class="avatar">
+                <img src="https://c-ssl.dtstatic.com/uploads/blog/202307/10/XxS5ql7AcQd7q59.thumb.400_0.jpg_webp">
+            </div>
+            <form class="login-form">
+                <div class="username">
+                    <div>用户名</div>
+                    <el-input style="width: 150px;" size="mini" v-model="loginform.username"></el-input>
+                </div>
+                <div class="password">
+                    <div>密码</div>
+                    <el-input style="width: 150px;" size="mini" type="password"
+                        v-model="loginform.password">密码</el-input>
+                </div>
+                <div class="buttons">
+                    <el-button size="mini" type="primary">登录</el-button>
+                    <el-button size="mini">注册</el-button>
+                </div>
+            </form>
+        </div>
+        <div class="mid">
+            <div class="hls-container">
+                <div class="hls-wrapper">
+                    <video id="hls-video" controls></video>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<style>
+    .hls-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 20px auto;
+    }
+
+    .hls-wrapper {
+        position: relative;
+        padding-top: 56.25%;
+        background: #000;
+        /* 16:9宽高比 */
+    }
+
+    #hls-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .hls-container .bottom-bar {
+        display: inline;
+        margin-top: 5px;
+    }
+
+</style>
+<script>
+    function encode(token) {
+        try {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
+                '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+            ).join(''));
+
+            return JSON.parse(jsonPayload);
+        } catch (e) {
+            return null;
+        }
+    }
+
+    axios.interceptors.request.use(config => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    }, error => {
+        return Promise.reject(error);
+    });
+
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                loginform: {
+                    username: '',
+                    password: '',
+                },
+                hots: [],
+                username: '',
+                userId: '',
+                key: '',
+                isloging: false,
+                playing: false, // 是否正在播放
+                title: '', // 当前播放视频标题
+            }
+        },
+        created() {
+            this.checkLogin();
+            this.gethot();
+        },
+        mounted() {
+            // 获取URL中的视频参数
+            const urlParams = new URLSearchParams(window.location.search);
+            this.filename = decodeURIComponent(urlParams.get('video') || "");
+
+            if (this.filename) {
+                this.title = this.filename;
+                this.play();
+            }
+            else
+                console.error("未指定视频文件");
+        },
+        methods: {
+            showLogin() {
+                if (this.checkLogin()) {
+                    this.isloging = false;
+                    this.$message.success("已登录")
+                }
+                else
+                    this.isloging = true
+            },
+            close() { this.isloging = false },
+            // 检查登录状态
+            checkLogin() {
+                const token = localStorage.getItem('token');
+                if (token) {
+                    const payload = encode(token);
+                    this.userId = payload.userid;// 注意payload中的字段名是小写userid
+                    this.username = payload.username;
+                    return true;
+                } else
+                    return false;
+            },
+            login() {
+                const form = new FormData;
+                form.append("username", this.loginform.username)
+                form.append("password", this.loginform.password)
+                axios.post('http://127.0.0.1:8080/gateway/user/login', form).then((res) => {
+                    if (res.data.token) {
+                        localStorage.setItem('token', res.data.token);
+                        this.username = res.data.username;
+                        this.userId = res.data.userId;
+                        this.$message.success(res.data.message)
+                        this.isloging = false
+                    } else
+                        this.$message.error("error")
+                })
+            },
+            search() {
+                const form = new FormData;
+                form.append("key", this.key);
+                axios.post('http://127.0.0.1:8000/vedios/search', form).then((res) => {
+                    this.videos = res.data
+                })
+            },
+
+            async play(vedio) {
+                this.playing = true;
+                // 先获取视频URL
+                try {
+                    const formData = new FormData();
+                    formData.append('filename', this.filename);
+                    const res = await axios.post('http://127.0.0.1:8000/vedios/play', formData);
+                    const vedioUrl = res.data;
+                    console.log('获取到的视频URL:', vedioUrl); // 调试：确认URL格式
+
+                    // 确保DOM更新完成后再操作video元素
+                    await new Promise(resolve => this.$nextTick(resolve));
+
+                    const video = document.getElementById('hls-video');
+                    video.src = '';
+
+                    // 使用hls.js播放HLS视频
+                    if (Hls.isSupported()) {
+                        const hls = new Hls();
+                        hls.loadSource(vedioUrl);
+                        hls.attachMedia(video);
+
+                        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                            console.log("加载完成")
+                        });
+
+                        // 处理可能的跨域错误
+                        hls.on(Hls.Events.ERROR, (_, data) => {
+                            if (data.type === Hls.ErrorTypes.NETWORK_ERROR)
+                                alert('视频加载失败：网络错误');
+                        });
+                    }
+                    // 原生支持HLS的情况
+                    else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                        video.src = vedioUrl;
+                        video.addEventListener('loadedmetadata', () => {
+                            video.play().catch(error => {
+                                console.error('播放失败:', error);
+                            });
+                        });
+                    } else
+                        alert('您的浏览器不支持播放HLS视频');
+                } catch (error) {
+                    console.error('视频加载失败:', error);
+                    alert('视频加载失败: ' + error.message);
+                }
+            },
+
+            // 关闭播放器
+            closePlayer() {
+                this.playing = false;
+                const video = document.getElementById('hls-video');
+                video.pause();
+                video.src = '';
+            },
+
+            gethot() {
+                axios.get('http://127.0.0.1:8000/vedios/hot').then((res) => {
+                    this.hots = res.data
+                    console.log(this.hots)
+                })
+            },
+            hot_play(filename) {
+                window.location.href = `play.html?video=${encodeURIComponent(filename)}`
+            },
+            getByUser() {
+                if (!this.checkLogin()) {
+                    this.$message.error("请先登录");
+                    return
+                }
+                const form = new FormData
+                form.append("userId", this.userId)
+                axios.post('http://127.0.0.1:8000/vedios/user', form).then((res) => {
+                    this.videos = res.data
+                })
+            },
+        }
+    })
+</script>
+<html>

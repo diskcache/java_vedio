@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/vue.js"></script>
+    <script src="scripts/element.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/top.css">
+    <script src="scripts/axios.js"></script>
+    <script src="scripts/hls.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="login-form">
+            <div class="avatar">
+                <img src="https://c-ssl.dtstatic.com/uploads/blog/202307/10/XxS5ql7AcQd7q59.thumb.400_0.jpg_webp">
+            </div>
+            <div class="input-list">
+                <el-input size="mini" style="width: 200px;">用户名</el-input>
+                <el-input size="mini" style="width: 200px;">密 码</el-input>
+                <el-button size="mini" type="primary" @click="login">登录</el-button>
+            </div>
+        </div>
+    </div>
+</body>
+<style>
+    .login-form {
+        width: 400px;
+        height: 300px;
+        justify-content: space-between;
+        margin: 0 auto;
+        box-shadow: 2px 2px 2px #DDDDDD;
+    }
+
+    .login-form .avatar {
+        border-radius: 50%;
+        border: 2px solid #DDDDDD;
+    }
+
+    .login-form .inputlist {
+        margin-top: 5px;
+    }
+
+    .login-form .inputlist el-input {
+        margin: 2px;
+    }
+</style>
+<script>
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                loginform: {
+                    username: '',
+                    password: '',
+                },
+            }
+        },
+        methods: {
+            // 检查登录状态
+            checkLoginStatus() {
+                const token = localStorage.getItem('token');
+                if (token)
+                    console.log("已登录")
+                else
+                    console.log("未登录")
+            },
+            login() {
+                const form = new FormData;
+                form.append("username", this.loginform.username)
+                form.append("password", this.loginform.password)
+                axios.post('http://127.0.0.1:8002/user/login', form).then((res) => {
+                    if (res.data.token) {
+                        localStorage.setItem('token', res.data.token);
+                        this.username = res.data.username;
+                        this.userId = res.data.userId;
+                    }
+                })
+            },
+        }
+    })
+</script>
+<html>
